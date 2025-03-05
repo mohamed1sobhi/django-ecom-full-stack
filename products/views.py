@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from . import models
 from .forms import ProductForm, CategoryForm
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -23,10 +23,15 @@ class ProductUpdateView(LoginRequiredMixin,UpdateView):
 
 
     #class bassed view to delete a product
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin,DeleteView):
     model = models.Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('product_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff == True:
+            return redirect('product_list') 
+        return super().dispatch(request, *args, **kwargs)
 
 
     #class bassed view to create a new category 
