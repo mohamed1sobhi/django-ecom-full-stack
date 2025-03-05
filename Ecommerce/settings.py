@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'cartAndCheckout',
     'crispy_forms',
     'crispy_bootstrap5',
+    'api',
+    'rest_framework',
 
 ]
 
