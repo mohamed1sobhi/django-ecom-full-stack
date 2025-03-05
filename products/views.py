@@ -2,9 +2,11 @@ from django.shortcuts import render
 from . import models
 from .forms import ProductForm, CategoryForm
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-    # class bassed view to create a new product 
-class ProductCreateView(CreateView):
+
+# class bassed view to create a new product  
+class ProductCreateView(LoginRequiredMixin,CreateView):
     model = models.Product
     form_class = ProductForm
     template_name = 'product_create.html'
@@ -12,7 +14,7 @@ class ProductCreateView(CreateView):
 
 
     #class bassed view to update a product
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin,UpdateView):
     model = models.Product
     form_class = ProductForm
     template_name = 'product_create.html'
@@ -26,8 +28,8 @@ class ProductDeleteView(DeleteView):
     success_url = '/'
 
 
-    #class bassed view to create a new category
-class CategoryCreateView(CreateView):
+    #class bassed view to create a new category 
+class CategoryCreateView(LoginRequiredMixin,CreateView):
     model = models.Category
     form_class = CategoryForm
     template_name = 'category_create.html'

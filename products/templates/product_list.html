@@ -37,6 +37,27 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'category_list'%}">Categories</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'product_create'%}">Add Product</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'category_create'%}">Add Category</a></li>
+                    {% if user.is_authenticated %}
+                    <p>Welcome, {{ user.username }}!</p>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger">Logout</button>
+                            </form>
+                        </a>
+                        <a class="nav-link">
+                            <form method="post" action="{% url 'profile' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger">My Profile</button>
+                            </form>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login'%}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register'%}">Register</a></li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>
