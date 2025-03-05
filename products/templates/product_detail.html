@@ -19,9 +19,9 @@
             <h4 class="text-success">${{ product_detail.price }}</h4>
             <p>{{ product_detail.description }}</p>
             <p><b>Rating:</b> {{ product_detail.rating }} / 5</p>
-            <a href="{% url 'product_update' pk=product.id %}" class="btn btn-secondary">Update</a>
-            <a href="{% url 'product_delete' pk=product.id %}" class="btn btn-danger">Delete</a>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <a href="{% url 'product_update' pk=product_detail.id %}" class="btn btn-secondary">Update</a>
+            <a href="{% url 'product_delete' pk=product_detail.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'add_to_cart' id=product_detail.id %}" class="btn btn-success">Add To Cart</a>
             <a href="{% url 'product_list'%}" class="btn btn-outline-secondary">Back to Products</a>
 
         </div>
