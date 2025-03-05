@@ -1,0 +1,30 @@
+{% extends 'product_list.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+
+<section class="bg-secondary text-white text-center p-3">
+    <div class="container">
+        <h2>Categories</h2>
+    </div>
+</section>
+<section class="container py-5">
+    <h2 class="text-center mb-4">All Categories</h2>
+    <div class="row g-4">
+        {% for cat in category %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ cat.name }}</h5>
+                    <a href="{% url 'category_detail' id=cat.id %}" class="btn btn-outline-primary">View Products</a>
+                    <a href="{% url 'category_update' pk=cat.id %}" class="btn btn-secondary">Update Category</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No categories available.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

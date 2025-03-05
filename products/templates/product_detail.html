@@ -1,0 +1,30 @@
+{% extends 'product_list.html' %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+<section class="bg-secondary text-white text-center p-3">
+    <div class="container">
+        <h2>Product Details</h2>
+    </div>
+</section>
+<section class="container py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ product_detail.thumbnail }}" class="img-fluid rounded" alt="{{ product_detail.title }}">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ product_detail.title }}</h2>
+            <p class="text-muted">Category: {{ product_detail.category.name }}</p>
+            <h4 class="text-success">${{ product_detail.price }}</h4>
+            <p>{{ product_detail.description }}</p>
+            <p><b>Rating:</b> {{ product_detail.rating }} / 5</p>
+            <a href="{% url 'product_update' pk=product.id %}" class="btn btn-secondary">Update</a>
+            <a href="{% url 'product_delete' pk=product.id %}" class="btn btn-danger">Delete</a>
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <a href="{% url 'product_list'%}" class="btn btn-outline-secondary">Back to Products</a>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
